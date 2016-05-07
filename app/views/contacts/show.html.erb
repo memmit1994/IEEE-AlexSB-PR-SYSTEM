@@ -1,0 +1,36 @@
+<div class="container text-center">
+
+<%- model_class = Contact -%>
+<div class="page-header">
+  <h1><%= @contact.name%></h1>
+</div>
+<% if @contact.photo_file_name %> 
+<%= image_tag @contact.photo.url(:medium) %>
+<% else %> 
+<img src="/img/profile.png" />
+<% end %> 
+<dl style="margin-top:1em; font-size:1.7em;" >
+
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd style="padding-bottom:.5em;"><%= @contact.number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
+  <dd style="padding-bottom:.5em;"><%= @contact.position %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:field_company) %>:</strong></dt>
+  <dd style="padding-bottom:.5em;"><%= @contact.field_company %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd style="padding-bottom:.5em;"><%= @contact.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:comment) %>:</strong></dt>
+  <dd style="padding-bottom:.5em;"><%= @contact.comment %></dd>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+root_path, :class => 'btn btn-default'  ,style:"margin-top:1em; padding:1em 4em;"%>
+<% if @isAdmin %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  edit_contact_path(@contact), :class => 'btn btn-default' ,style:"margin-top:1em; padding:1em 4em;"%>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  contact_path(@contact),
+  :method => 'delete',
+  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+  :class => 'btn btn-danger' ,style:"margin-top:1em; padding:1em 4em;"%>
+<% end %></div>

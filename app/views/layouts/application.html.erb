@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IEEE | PR SYSTEM</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'freelancer.css','/css', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/freelancer.css" rel="stylesheet">
+  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../fonts/g2font.css" rel="stylesheet" type="text/css">
+  <link href="../fonts/gfont.css" rel="stylesheet" type="text/css">
+
+</head>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand" ><%= link_to "IEEE AlexSB",root_path ,class:"homelink"%></span>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if current_user %>
+
+          <%= form_tag(contacts_path,:method => :get,class:'navbar-form navbar-left') do %>
+              <%= text_field_tag 'query',params[:query] , class: 'form-control' ,placeholder:'Search',style: "padding-right:9em;" %>
+
+              <% if current_user.email=="guest@guest.com"%>
+                  <div class="checkbox navbar-btn" style="font-size:1.5em;">
+                    <label class="navbar-link" for="by_name">
+                      <%= check_box_tag "by_name",params[:by_name] ,default: "on" ,style:"padding:10em;"%>
+                        by Name
+                    </label>
+                    <label class="navbar-link" for="by_field">
+                      <%= check_box_tag "by_field",params[:by_field]%>
+                        by Field/Company
+                    </label>
+                </div>
+                  
+
+              <%end%>
+              <%= submit_tag 'Search' ,:name => nil ,class:'btn btn-default' , style:"margin-left:1em;"%>
+              <%end%>
+      <%end%>
+      <ul class="nav navbar-nav navbar-form navbar-right">
+        <% if not current_user %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Log in<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% if not current_user %>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name) , class: "navbar-form ") do |f| %>
+              <li><%= f.email_field :email, class: "form-control" ,style:"margin-bottom:1em;",placeholder:"Email" %></li>
+              <li><%= f.password_field :password, autocomplete: "off" , class: "form-control" ,style:"margin-bottom:1em;" ,placeholder:"Password"%></li>
+              <li><%= f.submit "Log in" , class: "btn btn-default"%></li>
+              <% end %>
+              <%end%> 
+            </ul>
+          </li>
+          <%else %>
+          <%= link_to "Log out",destroy_user_session_path ,method:"DELETE", class: "navbar-brand"%>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <body>
+
+    <div class="container" style="margin-top:7em;">
+      <%= yield %>
+    </div>
+  </body>
+  </html>
+

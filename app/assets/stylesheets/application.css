@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body { 
+	background-color:cornflowerblue;
+
+  }
+
+.navbar {
+  padding-top: .7em;
+	background-color:#2c3e50 !important;
+	border-color:#2c3e50 !important;
+}
+.navbar-brand {
+	color:white !important;
+    
+}
+
+
+.dropdown-menu {
+	border-radius:5px !important;
+	padding:1em !important;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+  margin:0em 1em !important;
+}
+.navbar a {
+  color:white;
+}
+.homelink  {
+    all:unset!important;
+}
+.navbar-link{
+  font-size:0.7em !important;
+}
+.navbar-link:hover{
+  color:white !important;
+}
+
+.btn { 
+color:white !important;
+ }
