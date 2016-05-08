@@ -22,18 +22,15 @@ ActiveRecord::Schema.define(version: 20160428074747) do
     t.string   "position"
     t.string   "field_company"
     t.string   "email"
-    t.integer  "id",                 null: false
-    t.integer  "primary",            null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
     t.string   "comment"
+    t.integer  "id",                 default: 1, null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
 
-  create_table "users", id: false, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -47,8 +44,5 @@ ActiveRecord::Schema.define(version: 20160428074747) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

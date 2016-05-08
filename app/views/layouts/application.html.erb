@@ -72,7 +72,15 @@
             </ul>
           </li>
           <%else %>
-          <%= link_to "Log out",destroy_user_session_path ,method:"DELETE", class: "navbar-brand"%>
+          <% if current_user.email.include?("admin") %>
+          <% user="Admin   " %>
+          <%else%>
+          <% user="Guest   "%>
+          <%end%>
+          <div class="navbar-brand" style="margin-right:1em;">
+            <%= "Welcome, #{user} "%user %>
+          </div>
+           <%= link_to " Log out?"%user,destroy_user_session_path ,method:"DELETE", class: "navbar-brand"%>
           <%end%>
         </ul>
       </div>
